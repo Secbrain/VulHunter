@@ -1,0 +1,1 @@
+{"no_holeloops": ["AaveStakingHelper", "AaveStakingHelper__1", "ConstOracle", "Decryption", "HervezVestingSafeDistributor", "IDpost", "MockAmpleforth", "Monument", "RightsManager", "SGNConversionManager", "SignatureVerifier", "TransferCheck", "WAR"], "false_audit": []}

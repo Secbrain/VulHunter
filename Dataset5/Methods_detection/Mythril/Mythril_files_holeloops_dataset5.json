@@ -1,0 +1,1 @@
+{"parity_multisig_bug_0xBEc591De75b8699A3Ba52F073428822d0Bfc0D7e": {"Exception State": [17]}, "parity_multisig_bug_2_0x863df6bfa4469f3ead0be8f9f2aae51c91a907b4": {"Exception State": [20]}, "UCN_integer_overflow_safemath_0x6EF5B9ae723Fe059Cac71aD620495575d19dAc42": {"Integer Arithmetic Bugs": [30, 33]}}
