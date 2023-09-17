@@ -1,0 +1,146 @@
+ContractDefinition "Test"
+   Source: "contract Test{\n    address owner;\n\n    mapping (address => uint) balances;\n\n    constructor(){\n        balances[msg.sender] = 0;\n\t    owner = msg.sender;\n    }\n\n    function storage_coins(uint storage_value) public {\n        balances[msg.sender] += storage_value;\n    }\n\n    function transfer_coins(uint transfer_value) public{ \n        if(balances[msg.sender] >= transfer_value){\n            balances[msg.sender] -= transfer_value;\n        }\n    }\n}"
+  VariableDeclaration "owner"
+     Type: address
+     Source: "address owner"
+    ElementaryTypeName address
+       Source: "address"
+  VariableDeclaration "balances"
+     Type: mapping(address => uint256)
+     Source: "mapping (address => uint) balances"
+    Mapping
+       Source: "mapping (address => uint)"
+      ElementaryTypeName address
+         Source: "address"
+      ElementaryTypeName uint
+         Source: "uint"
+  FunctionDefinition "" - public
+     Source: "constructor(){\n        balances[msg.sender] = 0;\n\t    owner = msg.sender;\n    }"
+    ParameterList
+       Source: "()"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n        balances[msg.sender] = 0;\n\t    owner = msg.sender;\n    }"
+      ExpressionStatement
+         Source: "balances[msg.sender] = 0"
+        Assignment using operator =
+           Type: uint256
+           Source: "balances[msg.sender] = 0"
+          IndexAccess
+             Type: uint256
+             Source: "balances[msg.sender]"
+            Identifier balances
+               Type: mapping(address => uint256)
+               Source: "balances"
+            MemberAccess to member sender
+               Type: address
+               Source: "msg.sender"
+              Identifier msg
+                 Type: msg
+                 Source: "msg"
+          Literal, token: [no token] value: 0
+             Type: int_const 0
+             Source: "0"
+      ExpressionStatement
+         Source: "owner = msg.sender"
+        Assignment using operator =
+           Type: address
+           Source: "owner = msg.sender"
+          Identifier owner
+             Type: address
+             Source: "owner"
+          MemberAccess to member sender
+             Type: address
+             Source: "msg.sender"
+            Identifier msg
+               Type: msg
+               Source: "msg"
+  FunctionDefinition "storage_coins" - public
+     Source: "function storage_coins(uint storage_value) public {\n        balances[msg.sender] += storage_value;\n    }"
+    ParameterList
+       Source: "(uint storage_value)"
+      VariableDeclaration "storage_value"
+         Type: uint256
+         Source: "uint storage_value"
+        ElementaryTypeName uint
+           Source: "uint"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n        balances[msg.sender] += storage_value;\n    }"
+      ExpressionStatement
+         Source: "balances[msg.sender] += storage_value"
+        Assignment using operator +=
+           Type: uint256
+           Source: "balances[msg.sender] += storage_value"
+          IndexAccess
+             Type: uint256
+             Source: "balances[msg.sender]"
+            Identifier balances
+               Type: mapping(address => uint256)
+               Source: "balances"
+            MemberAccess to member sender
+               Type: address
+               Source: "msg.sender"
+              Identifier msg
+                 Type: msg
+                 Source: "msg"
+          Identifier storage_value
+             Type: uint256
+             Source: "storage_value"
+  FunctionDefinition "transfer_coins" - public
+     Source: "function transfer_coins(uint transfer_value) public{ \n        if(balances[msg.sender] >= transfer_value){\n            balances[msg.sender] -= transfer_value;\n        }\n    }"
+    ParameterList
+       Source: "(uint transfer_value)"
+      VariableDeclaration "transfer_value"
+         Type: uint256
+         Source: "uint transfer_value"
+        ElementaryTypeName uint
+           Source: "uint"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{ \n        if(balances[msg.sender] >= transfer_value){\n            balances[msg.sender] -= transfer_value;\n        }\n    }"
+      IfStatement
+         Source: "if(balances[msg.sender] >= transfer_value){\n            balances[msg.sender] -= transfer_value;\n        }"
+        BinaryOperation using operator >=
+           Type: bool
+           Source: "balances[msg.sender] >= transfer_value"
+          IndexAccess
+             Type: uint256
+             Source: "balances[msg.sender]"
+            Identifier balances
+               Type: mapping(address => uint256)
+               Source: "balances"
+            MemberAccess to member sender
+               Type: address
+               Source: "msg.sender"
+              Identifier msg
+                 Type: msg
+                 Source: "msg"
+          Identifier transfer_value
+             Type: uint256
+             Source: "transfer_value"
+        Block
+           Source: "{\n            balances[msg.sender] -= transfer_value;\n        }"
+          ExpressionStatement
+             Source: "balances[msg.sender] -= transfer_value"
+            Assignment using operator -=
+               Type: uint256
+               Source: "balances[msg.sender] -= transfer_value"
+              IndexAccess
+                 Type: uint256
+                 Source: "balances[msg.sender]"
+                Identifier balances
+                   Type: mapping(address => uint256)
+                   Source: "balances"
+                MemberAccess to member sender
+                   Type: address
+                   Source: "msg.sender"
+                  Identifier msg
+                     Type: msg
+                     Source: "msg"
+              Identifier transfer_value
+                 Type: uint256
+                 Source: "transfer_value"

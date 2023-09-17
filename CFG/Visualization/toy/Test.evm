@@ -1,0 +1,314 @@
+    /* "toy.sol":0:450  contract Test{... */
+  mstore(0x40, 0x80)
+    /* "toy.sol":80:159  constructor(){... */
+  callvalue
+    /* "--CODEGEN--":8:17   */
+  dup1
+    /* "--CODEGEN--":5:7   */
+  iszero
+  tag_1
+  jumpi
+    /* "--CODEGEN--":30:31   */
+  0x0
+    /* "--CODEGEN--":27:28   */
+  dup1
+    /* "--CODEGEN--":20:32   */
+  revert
+    /* "--CODEGEN--":5:7   */
+tag_1:
+    /* "toy.sol":80:159  constructor(){... */
+  pop
+    /* "toy.sol":126:127  0 */
+  0x0
+    /* "toy.sol":103:111  balances */
+  0x1
+    /* "toy.sol":103:123  balances[msg.sender] */
+  0x0
+    /* "toy.sol":112:122  msg.sender */
+  caller
+    /* "toy.sol":103:123  balances[msg.sender] */
+  0xffffffffffffffffffffffffffffffffffffffff
+  and
+  0xffffffffffffffffffffffffffffffffffffffff
+  and
+  dup2
+  mstore
+  0x20
+  add
+  swap1
+  dup2
+  mstore
+  0x20
+  add
+  0x0
+  keccak256
+    /* "toy.sol":103:127  balances[msg.sender] = 0 */
+  dup2
+  swap1
+  sstore
+  pop
+    /* "toy.sol":142:152  msg.sender */
+  caller
+    /* "toy.sol":134:139  owner */
+  0x0
+  dup1
+    /* "toy.sol":134:152  owner = msg.sender */
+  0x100
+  exp
+  dup2
+  sload
+  dup2
+  0xffffffffffffffffffffffffffffffffffffffff
+  mul
+  not
+  and
+  swap1
+  dup4
+  0xffffffffffffffffffffffffffffffffffffffff
+  and
+  mul
+  or
+  swap1
+  sstore
+  pop
+    /* "toy.sol":0:450  contract Test{... */
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x0
+  codecopy
+  0x0
+  return
+stop
+
+sub_0: assembly {
+        /* "toy.sol":0:450  contract Test{... */
+      mstore(0x40, 0x80)
+      jumpi(tag_1, lt(calldatasize, 0x4))
+      calldataload(0x0)
+      0x100000000000000000000000000000000000000000000000000000000
+      swap1
+      div
+      0xffffffff
+      and
+      dup1
+      0x61b1361a
+      eq
+      tag_2
+      jumpi
+      dup1
+      0xd17b4564
+      eq
+      tag_3
+      jumpi
+    tag_1:
+      0x0
+      dup1
+      revert
+        /* "toy.sol":165:269  function storage_coins(uint storage_value) public {... */
+    tag_2:
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_4
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x0
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_4:
+        /* "toy.sol":165:269  function storage_coins(uint storage_value) public {... */
+      pop
+      tag_5
+      0x4
+      dup1
+      calldatasize
+      sub
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      jump(tag_6)
+    tag_5:
+      stop
+        /* "toy.sol":275:448  function transfer_coins(uint transfer_value) public{ ... */
+    tag_3:
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_7
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x0
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_7:
+        /* "toy.sol":275:448  function transfer_coins(uint transfer_value) public{ ... */
+      pop
+      tag_8
+      0x4
+      dup1
+      calldatasize
+      sub
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      jump(tag_9)
+    tag_8:
+      stop
+        /* "toy.sol":165:269  function storage_coins(uint storage_value) public {... */
+    tag_6:
+        /* "toy.sol":249:262  storage_value */
+      dup1
+        /* "toy.sol":225:233  balances */
+      0x1
+        /* "toy.sol":225:245  balances[msg.sender] */
+      0x0
+        /* "toy.sol":234:244  msg.sender */
+      caller
+        /* "toy.sol":225:245  balances[msg.sender] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x0
+      keccak256
+      0x0
+        /* "toy.sol":225:262  balances[msg.sender] += storage_value */
+      dup3
+      dup3
+      sload
+      add
+      swap3
+      pop
+      pop
+      dup2
+      swap1
+      sstore
+      pop
+        /* "toy.sol":165:269  function storage_coins(uint storage_value) public {... */
+      pop
+      jump	// out
+        /* "toy.sol":275:448  function transfer_coins(uint transfer_value) public{ ... */
+    tag_9:
+        /* "toy.sol":364:378  transfer_value */
+      dup1
+        /* "toy.sol":340:348  balances */
+      0x1
+        /* "toy.sol":340:360  balances[msg.sender] */
+      0x0
+        /* "toy.sol":349:359  msg.sender */
+      caller
+        /* "toy.sol":340:360  balances[msg.sender] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x0
+      keccak256
+      sload
+        /* "toy.sol":340:378  balances[msg.sender] >= transfer_value */
+      lt
+      iszero
+        /* "toy.sol":337:442  if(balances[msg.sender] >= transfer_value){... */
+      iszero
+      tag_12
+      jumpi
+        /* "toy.sol":417:431  transfer_value */
+      dup1
+        /* "toy.sol":393:401  balances */
+      0x1
+        /* "toy.sol":393:413  balances[msg.sender] */
+      0x0
+        /* "toy.sol":402:412  msg.sender */
+      caller
+        /* "toy.sol":393:413  balances[msg.sender] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x0
+      keccak256
+      0x0
+        /* "toy.sol":393:431  balances[msg.sender] -= transfer_value */
+      dup3
+      dup3
+      sload
+      sub
+      swap3
+      pop
+      pop
+      dup2
+      swap1
+      sstore
+      pop
+        /* "toy.sol":337:442  if(balances[msg.sender] >= transfer_value){... */
+    tag_12:
+        /* "toy.sol":275:448  function transfer_coins(uint transfer_value) public{ ... */
+      pop
+      jump	// out
+
+    auxdata: 0xa165627a7a7230582072af6d9192ef91d2233c4e75298a76438e04178811f66679dcba756e6d0643740029
+}

@@ -1,0 +1,230 @@
+PragmaDirective
+   Source: "pragma solidity ^0.4.24;"
+ContractDefinition "StandardToken"
+   Source: "contract StandardToken {\n\tmapping (address => uint) private userBalances;\n\n\taddress owner;\n\n\tmodifier onlyOwner() {\n\t\trequire(msg.sender == owner);\n\t\t_;\n    }\n\n\tfunction transfer(address to, uint amount) {\n\t\tif (userBalances[msg.sender] >= amount) {\n\t\t\tuserBalances[to] += amount;\n\t\t\tuserBalances[msg.sender] -= amount;\n\t\t}\n\t}\n\n\tfunction modifierowner() public {\n        // add administrators here\n        owner = msg.sender;\n    }\n\n\tfunction withdrawBalance() onlyOwner() public {\n\t\tuint amountToWithdraw = userBalances[msg.sender];\n\t\tif (!(msg.sender.call.value(amountToWithdraw)())) { throw; } // At this point, the caller's code is executed, and can call transfer()\n\t\tuserBalances[msg.sender] = 0;\n\t}\n}"
+  VariableDeclaration "userBalances"
+     Type: mapping(address => uint256)
+     Source: "mapping (address => uint) private userBalances"
+    Mapping
+       Source: "mapping (address => uint)"
+      ElementaryTypeName address
+         Source: "address"
+      ElementaryTypeName uint
+         Source: "uint"
+  VariableDeclaration "owner"
+     Type: address
+     Source: "address owner"
+    ElementaryTypeName address
+       Source: "address"
+  ModifierDefinition "onlyOwner"
+     Source: "modifier onlyOwner() {\n\t\trequire(msg.sender == owner);\n\t\t_;\n    }"
+    ParameterList
+       Source: "()"
+    Block
+       Source: "{\n\t\trequire(msg.sender == owner);\n\t\t_;\n    }"
+      ExpressionStatement
+         Source: "require(msg.sender == owner)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(msg.sender == owner)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ==
+             Type: bool
+             Source: "msg.sender == owner"
+            MemberAccess to member sender
+               Type: address
+               Source: "msg.sender"
+              Identifier msg
+                 Type: msg
+                 Source: "msg"
+            Identifier owner
+               Type: address
+               Source: "owner"
+      PlaceholderStatement
+         Source: "_"
+  FunctionDefinition "transfer" - public
+     Source: "function transfer(address to, uint amount) {\n\t\tif (userBalances[msg.sender] >= amount) {\n\t\t\tuserBalances[to] += amount;\n\t\t\tuserBalances[msg.sender] -= amount;\n\t\t}\n\t}"
+    ParameterList
+       Source: "(address to, uint amount)"
+      VariableDeclaration "to"
+         Type: address
+         Source: "address to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "amount"
+         Type: uint256
+         Source: "uint amount"
+        ElementaryTypeName uint
+           Source: "uint"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n\t\tif (userBalances[msg.sender] >= amount) {\n\t\t\tuserBalances[to] += amount;\n\t\t\tuserBalances[msg.sender] -= amount;\n\t\t}\n\t}"
+      IfStatement
+         Source: "if (userBalances[msg.sender] >= amount) {\n\t\t\tuserBalances[to] += amount;\n\t\t\tuserBalances[msg.sender] -= amount;\n\t\t}"
+        BinaryOperation using operator >=
+           Type: bool
+           Source: "userBalances[msg.sender] >= amount"
+          IndexAccess
+             Type: uint256
+             Source: "userBalances[msg.sender]"
+            Identifier userBalances
+               Type: mapping(address => uint256)
+               Source: "userBalances"
+            MemberAccess to member sender
+               Type: address
+               Source: "msg.sender"
+              Identifier msg
+                 Type: msg
+                 Source: "msg"
+          Identifier amount
+             Type: uint256
+             Source: "amount"
+        Block
+           Source: "{\n\t\t\tuserBalances[to] += amount;\n\t\t\tuserBalances[msg.sender] -= amount;\n\t\t}"
+          ExpressionStatement
+             Source: "userBalances[to] += amount"
+            Assignment using operator +=
+               Type: uint256
+               Source: "userBalances[to] += amount"
+              IndexAccess
+                 Type: uint256
+                 Source: "userBalances[to]"
+                Identifier userBalances
+                   Type: mapping(address => uint256)
+                   Source: "userBalances"
+                Identifier to
+                   Type: address
+                   Source: "to"
+              Identifier amount
+                 Type: uint256
+                 Source: "amount"
+          ExpressionStatement
+             Source: "userBalances[msg.sender] -= amount"
+            Assignment using operator -=
+               Type: uint256
+               Source: "userBalances[msg.sender] -= amount"
+              IndexAccess
+                 Type: uint256
+                 Source: "userBalances[msg.sender]"
+                Identifier userBalances
+                   Type: mapping(address => uint256)
+                   Source: "userBalances"
+                MemberAccess to member sender
+                   Type: address
+                   Source: "msg.sender"
+                  Identifier msg
+                     Type: msg
+                     Source: "msg"
+              Identifier amount
+                 Type: uint256
+                 Source: "amount"
+  FunctionDefinition "modifierowner" - public
+     Source: "function modifierowner() public {\n        // add administrators here\n        owner = msg.sender;\n    }"
+    ParameterList
+       Source: "()"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n        // add administrators here\n        owner = msg.sender;\n    }"
+      ExpressionStatement
+         Source: "owner = msg.sender"
+        Assignment using operator =
+           Type: address
+           Source: "owner = msg.sender"
+          Identifier owner
+             Type: address
+             Source: "owner"
+          MemberAccess to member sender
+             Type: address
+             Source: "msg.sender"
+            Identifier msg
+               Type: msg
+               Source: "msg"
+  FunctionDefinition "withdrawBalance" - public
+     Source: "function withdrawBalance() onlyOwner() public {\n\t\tuint amountToWithdraw = userBalances[msg.sender];\n\t\tif (!(msg.sender.call.value(amountToWithdraw)())) { throw; } // At this point, the caller's code is executed, and can call transfer()\n\t\tuserBalances[msg.sender] = 0;\n\t}"
+    ParameterList
+       Source: "()"
+    ParameterList
+       Source: ""
+    ModifierInvocation "onlyOwner"
+       Source: "onlyOwner()"
+      Identifier onlyOwner
+         Type: modifier ()
+         Source: "onlyOwner"
+    Block
+       Source: "{\n\t\tuint amountToWithdraw = userBalances[msg.sender];\n\t\tif (!(msg.sender.call.value(amountToWithdraw)())) { throw; } // At this point, the caller's code is executed, and can call transfer()\n\t\tuserBalances[msg.sender] = 0;\n\t}"
+      VariableDeclarationStatement
+         Source: "uint amountToWithdraw = userBalances[msg.sender]"
+        VariableDeclaration "amountToWithdraw"
+           Type: uint256
+           Source: "uint amountToWithdraw"
+          ElementaryTypeName uint
+             Source: "uint"
+        IndexAccess
+           Type: uint256
+           Source: "userBalances[msg.sender]"
+          Identifier userBalances
+             Type: mapping(address => uint256)
+             Source: "userBalances"
+          MemberAccess to member sender
+             Type: address
+             Source: "msg.sender"
+            Identifier msg
+               Type: msg
+               Source: "msg"
+      IfStatement
+         Source: "if (!(msg.sender.call.value(amountToWithdraw)())) { throw; }"
+        UnaryOperation (prefix) !
+           Type: bool
+           Source: "!(msg.sender.call.value(amountToWithdraw)())"
+          TupleExpression
+             Type: bool
+             Source: "(msg.sender.call.value(amountToWithdraw)())"
+            FunctionCall
+               Type: bool
+               Source: "msg.sender.call.value(amountToWithdraw)()"
+              FunctionCall
+                 Type: function () payable returns (bool)
+                 Source: "msg.sender.call.value(amountToWithdraw)"
+                MemberAccess to member value
+                   Type: function (uint256) returns (function () payable returns (bool))
+                   Source: "msg.sender.call.value"
+                  MemberAccess to member call
+                     Type: function () payable returns (bool)
+                     Source: "msg.sender.call"
+                    MemberAccess to member sender
+                       Type: address
+                       Source: "msg.sender"
+                      Identifier msg
+                         Type: msg
+                         Source: "msg"
+                Identifier amountToWithdraw
+                   Type: uint256
+                   Source: "amountToWithdraw"
+        Block
+           Source: "{ throw; }"
+          Throw
+             Source: "throw"
+      ExpressionStatement
+         Source: "userBalances[msg.sender] = 0"
+        Assignment using operator =
+           Type: uint256
+           Source: "userBalances[msg.sender] = 0"
+          IndexAccess
+             Type: uint256
+             Source: "userBalances[msg.sender]"
+            Identifier userBalances
+               Type: mapping(address => uint256)
+               Source: "userBalances"
+            MemberAccess to member sender
+               Type: address
+               Source: "msg.sender"
+              Identifier msg
+                 Type: msg
+                 Source: "msg"
+          Literal, token: [no token] value: 0
+             Type: int_const 0
+             Source: "0"
