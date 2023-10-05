@@ -14,7 +14,7 @@ VulHunter is a method that can effectively detect bytecode/opcode paths that tri
 
 ### The model trainning of VulHunter 
 
-The examples of Bi$^2$-LSTM detection models are stored in the dir of "models", which trainned based on contracts of the Dataset\_1.  Users can train the new models based on the pre-collected contract datasets through the following steps. First, extract the contract instances via the following command. Note that using GPU can improve the speed of the training and testing process. 
+The examples of Bi $^2$-LSTM detection models are stored in the dir of "models", which trainned based on contracts of the Dataset\_1.  Users can train the new models based on the pre-collected contract datasets through the following steps. First, extract the contract instances via the following command. Note that using GPU can improve the speed of the training and testing process. 
 
 ```bash
 python3 main/main.py --train-contracts contract --train-solcversions solcversions.json --instance-dir input
@@ -36,7 +36,7 @@ python3 main/main.py --train-labels input/dataset_1_vul_two_one_names_labels.jso
 ```
 Among it, the file "contract_bytecode_list10.json" is an example of contract instances (https://github.com/Secbrain/VulHunter/tree/main/Dataset1/Extracted_instances/dataset1_instances.rar), which can be obtained by executing the above operations. Also, the file "dataset_1_vul_two_one_names_labels.json" includes the vulnerability labels of contracts, and "model_train" is the output dir of trained detection models. Similarly, some parameters can be considered such as --detectors reentrancy-eth,controlled-array-length  (default: all of detected vulnerabilities), --batchsize 512 (default number), and --epoch 50 (default number) to extract the customized contract instances. All parameters can be viewed by executing the command python3 main/main.py --help.
 
-Besides, the model detection module currently is also an extensible framework, and it can support DNN models (e.g., the original Bi$^2$-LSTM, CNN, and Bi$^2$-GRU, which runs main/main_bi2gru.py and uses the main/model_types/result_predict_bigruatt.py, as shown in the following command) and traditional ML models (e.g., Random Forest, Decision Tree, XGB, KNN, and SVM, as stored in the dir main/model_types) to build the CFG of contracts and traverse the instances. Note that, the models Bi$^2$-LSTM and Bi$^2$-GRU can output the input weights, which can be used to locate the defective contract source codes. In the future, visualization tools such as Captum may help other models obtain the importance distribution of inputs.
+Besides, the model detection module currently is also an extensible framework, and it can support DNN models (e.g., the original Bi $^2$-LSTM, CNN, and Bi $^2$-GRU, which runs main/main_bi2gru.py and uses the main/model_types/result_predict_bigruatt.py, as shown in the following command) and traditional ML models (e.g., Random Forest, Decision Tree, XGB, KNN, and SVM, as stored in the dir main/model_types) to build the CFG of contracts and traverse the instances. Note that, the models Bi $^2$-LSTM and Bi $^2$-GRU can output the input weights, which can be used to locate the defective contract source codes. In the future, visualization tools such as Captum may help other models obtain the importance distribution of inputs.
 
 ```bash
 python3 main/main_bi2gru.py --train-labels input/dataset_1_vul_two_one_names_labels.json --contract-instances contract_bytecode_list10.json --model-dir model_train
@@ -44,37 +44,37 @@ python3 main/main_bi2gru.py --train-labels input/dataset_1_vul_two_one_names_lab
 
 ### The model detecting of VulHunter 
 
-Run VulHunter with the Bi$^2$-LSTM model on a single solidity contract file:
+Run VulHunter with the Bi $^2$-LSTM model on a single solidity contract file:
 
 ```bash
 python3 main/main.py --contract contracts_test/reentrancy_eth_0424.sol --solc-version 0.4.24 --filetype solidity --model-dir models --instance-len 10
 ```
 
-Run VulHunter with the Bi$^2$-LSTM model on a single bytecode contract file:
+Run VulHunter with the Bi $^2$-LSTM model on a single bytecode contract file:
 
 ```bash
 python3 main/main.py --contract contracts_test/4500858670586072846.bin --filetype bytecode --model-dir models --instance-len 10 --ifmap nomap
 ```
 
-Run VulHunter with the Bi$^2$-LSTM model on a single opcode contract file:
+Run VulHunter with the Bi $^2$-LSTM model on a single opcode contract file:
 
 ```bash
 python3 main/main.py --contract contracts_test/arbitrary_send.evm --filetype opcode --model-dir models --instance-len 10 --ifmap nomap
 ```
 
-Run VulHunter with the Bi$^2$-LSTM model on a single opcode contract file for detecting the specific vulnerabilities:
+Run VulHunter with the Bi $^2$-LSTM model on a single opcode contract file for detecting the specific vulnerabilities:
 
 ```bash
 python3 main/main.py --contract contracts_test/reentrancy_eth_0424.sol --solc-version 0.4.24 --filetype solidity --model-dir models --instance-len 10 --detectors reentrancy-eth,controlled-array-length
 ```
 
-Run VulHunter with the Bi$^2$-LSTM model on a single solidity contract file without defective source code statements:
+Run VulHunter with the Bi $^2$-LSTM model on a single solidity contract file without defective source code statements:
 
 ```bash
 python3 main/main.py --contract contracts_test/reentrancy_eth_0424.sol --solc-version 0.4.24 --filetype solidity --model-dir models --instance-len 10 --ifmap nomap
 ```
 
-Run VulHunter with the Bi$^2$-LSTM model and output the result report without defective source code statements:
+Run VulHunter with the Bi $^2$-LSTM model and output the result report without defective source code statements:
 
 ```bash
 python3 main/main.py --contract contracts_test/reentrancy_eth_0424.sol --filetype solidity --model-dir models --instance-len 10 --report reentrancy_eth_0424_nomap.pdf --ifmap nomap
@@ -86,7 +86,7 @@ Run VulHunter and output the result report with defective source code statements
 python3 main/main.py --contract contracts_test/reentrancy_eth_0424.sol --filetype solidity --model-dir models --tmp-dir tmp_figs --instance-len 10 --report reentrancy_eth_0424_map.pdf
 ```
 
-Run VulHunter with the Bi$^2$-LSTM model and output the main result report without defective source code statements:
+Run VulHunter with the Bi $^2$-LSTM model and output the main result report without defective source code statements:
 
 ```bash
 python3 main/main.py --contract contracts_test/reentrancy_eth_0424.sol --filetype solidity --model-dir models --instance-len 10 --report-main reentrancy_eth_0424_nomap_main.pdf --ifmap nomap
@@ -104,7 +104,7 @@ Run VulHunter and output the both result reports with defective source code stat
 python3 main/main.py --contract contracts_test/reentrancy_eth_0424.sol --filetype solidity --model-dir models --instance-len 10 --tmp-dir tmp_figs --report reentrancy_eth_0424_map.pdf --report-main reentrancy_eth_0424_map_main.pdf
 ```
 
-Run VulHunter with the Bi$^2$-LSTM model and automatically verify the feasibility of vulnerable instances:
+Run VulHunter with the Bi $^2$-LSTM model and automatically verify the feasibility of vulnerable instances:
 
 ```bash
 python3 main/main.py --contract contracts_test/arbitrary_send_path_false.sol --solc-version 0.4.24 --filetype solidity --model-dir models --instance-len 10 --verify
@@ -123,7 +123,7 @@ In addition, similar to the training process, VulHunter can employ the other ins
 python3 main/main_ethersolve.py --contract contracts_test/reentrancy_eth_0424.sol --solc-version 0.4.24 --filetype solidity --model-dir models --tmp-dir tmp_figs1 --instance-len 10
 ```
 
-The Bi$^2$-GRU of detection model can be used to detecte contracts by executing the following command.
+The Bi $^2$-GRU of detection model can be used to detecte contracts by executing the following command.
 
 ```bash
 python3 main/main_bi2gru.py --contract contracts_test/reentrancy_eth_0424.sol --solc-version 0.4.24 --filetype solidity --model-dir models --instance-len 10
