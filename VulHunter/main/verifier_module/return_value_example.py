@@ -1,0 +1,67 @@
+from manticore.ethereum import (ManticoreEVM,
+    ABI,
+)
+from manticore.core.smtlib import ConstraintSet, operators, PortfolioSolver, SolverType
+
+from manticore.core.smtlib.visitors import to_constant
+
+################ Script #######################
+
+m = ManticoreEVM()
+# And now make the contract account to analyze
+source_code = """
+contract C {
+    uint n;
+    function C(uint x) {
+        n = x;
+    }
+    function f(uint x) payable returns (bool) {
+        if (x == n) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
+"""
+
+user_account = m.create_account(balance=10000000)
+print("[+] Creating a user account", user_account)
+
+contract_account = m.solidity_create_contract(source_code, owner=user_account, args=[42])
+print("[+] Creating a contract account", contract_account)
+print("[+] Source code:")
+print(source_code)
+
+print(type(contract_account))
+
+x = m.make_symbolic_value()
+
+contract_account.f(x)
+
+# print("state length nums (all_states): ", len(list(m.all_states))) #三个状态 有两个else，仅返回一个
+
+# print("[+] Now the symbolic values")
+# symbolic_data = m.make_symbolic_buffer(320)
+# symbolic_value = m.make_symbolic_value(name="value")
+# m.transaction(
+#     caller=user_account, address=contract_account, value=symbolic_value, data=symbolic_data
+# )
+print("state length nums: ", len(list(m.all_states)))
+print("[+] Resulting balances are:")
+for state in m.all_states:
+    world = state.platform
+    tx = world.all_transactions[-1] #得到word中的交易
+    retval_array = world.human_transactions[-1].return_data
+    # print(retval_array.size)
+    print(ABI.deserialize("(bool)", to_constant(retval_array))[0])
+    # result_val = operators.CONCAT(2, *retval_array)
+
+    # print(result_val)
+
+    # balance = world.get_balance(int(user_account))
+    # print(state.solve_one(balance))
+
+# m.finalize()
+# print(f"[+] Look for results in {m.workspace}")

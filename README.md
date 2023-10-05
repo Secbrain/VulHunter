@@ -29,7 +29,7 @@ The folder "Dataset_vul_num" includes two .xlsx files, which illustrates the num
 
 ## VulHunter
 
-The folder "VulHunter" includes part of the source code of VulHunter and its installation and usage tutorials. Also, it provides the pre-trained models on Benign:Malicious=2:1 contracts in Dataset_1 and Dataset_2. We promise to disclose all the source code when the paper is accepted.
+The folder "VulHunter" includes part of the source code of VulHunter and its installation and usage tutorials. Also, it provides the pre-trained models on Benign:Malicious=2:1 contracts in Dataset_1.
 
 ## VulnerabilityMapping
 
